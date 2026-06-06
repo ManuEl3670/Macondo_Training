@@ -2,18 +2,22 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Macondo Training LOG PRO</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
-</head>
-<body> 
     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Macondo Training Log PRO - Ingegneria del Software per il Powerlifting</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
     <nav class="sidebar">
         <div class="logo">
             <h2><i class="fa-solid fa-dumbbell"></i> Macondo</h2>
         </div>
-
+        
         <ul class="nav-links">
             <li class="active" data-target="dashboard-view">
                 <a href="#"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></a>
@@ -25,11 +29,13 @@
                 <a href="#"><i class="fa-solid fa-history"></i> <span>Storico</span></a>
             </li>
             <li data-target="analytics-view">
-                <a href="#"><i class="fa-solid fa-chart-bar"></i> <span>Statistiche</span></a> 
+                <a href="#"><i class="fa-solid fa-chart-bar"></i> <span>Statistiche</span></a>
             </li>
         </ul>
     </nav>
+
     <main class="main-content">
+        
         <header class="main-header">
             <div class="welcome-text">
                 <h1>Macondo Powerlifting</h1>
@@ -38,12 +44,29 @@
         </header>
 
         <section id="dashboard-view" class="view-section active-view">
-            <div class="stats-card squat">
+            
+            <div class="stats-grid">
                 <div class="stat-card squat">
                     <div class="card-icon"><i class="fa-solid fa-weight-hanging"></i></div>
                     <div class="card-info">
                         <h3>1RM Squat Massimo</h3>
                         <p id="dash-squat">0 kg</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card bench">
+                    <div class="card-icon"><i class="fa-solid fa-mound"></i></div>
+                    <div class="card-info">
+                        <h3>1RM Panca Massima</h3>
+                        <p id="dash-bench">0 kg</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card deadlift">
+                    <div class="card-icon"><i class="fa-solid fa-arrows-up-to-line"></i></div>
+                    <div class="card-info">
+                        <h3>1RM Stacco Massimo</h3>
+                        <p id="dash-deadlift">0 kg</p>
                     </div>
                 </div>
             </div>
@@ -55,23 +78,22 @@
                     <button class="btn-primary" id="quick-start-btn"><i class="fa-solid fa-play"></i> Inizia Allenamento Ora</button>
                 </div>
                 
-                <div class="dashboard-widget">
-                    <div class="widget-card cta-widget">
-                        <h3>Registra una nuova sessione di forza</h3>
-                        <ul class="recent-list" id="dashboard-recent-list">
-                            </ul>
-                    </div>
+                <div class="widget-card history-widget">
+                    <h3>Anteprima Attività Recenti</h3>
+                    <ul class="recent-list" id="dashboard-recent-list">
+                        </ul>
                 </div>
+            </div>
         </section>
 
         <section id="workout-view" class="view-section">
             <div class="widget-card">
-
+                
                 <div class="workout-header">
                     <h2>Sessione di Allenamento in Corso</h2>
-                    <span class="timer-badge"><i class="fa-solid da-clock"></i> <span id="workout-timer">00:00</span></span>
+                    <span class="timer-badge"><i class="fa-solid fa-clock"></i> <span id="workout-timer">00:00</span></span>
                 </div>
-
+                
                 <div class="exercise-block">
                     <div class="exercise-selector">
                         <label for="exercise-select">Seleziona l'Esercizio Target:</label>
@@ -81,26 +103,54 @@
                             <option value="deadlift">Stacco da Terra</option>
                         </select>
                     </div>
-                    
+
+                    <div class="live-calc-box">
+                        <i class="fa-solid fa-calculator"></i> 
+                        <span>Massimale Teorico Stimato (1RM Live): <strong id="live-1rm-val">0 kg</strong></span>
+                    </div>
+
                     <table class="workout-table">
                         <thead>
                             <tr>
                                 <th>Set N°</th>
-                                <th>Carico KG</th>
+                                <th>Carico (KG)</th>
                                 <th>Ripetizioni</th>
-                                <th>RPE</th>
-                                <th>Azioni</th>
+                                <th>RPE (Scala di Sforzo)</th>
+                                <th>Azione</th>
                             </tr>
                         </thead>
                         <tbody id="workout-sets-tbody">
                             </tbody>
                     </table>
+                    
+                    <button class="btn-secondary" id="add-set-btn"><i class="fa-solid fa-plus"></i> Inserisci Serie Successiva</button>
+                </div>
+                
+                <button class="btn-primary save-btn" id="save-workout-btn"><i class="fa-solid fa-floppy-disk"></i> Salva e Concludi Sessione Corrente</button>
+            </div>
+        </section>
 
-                    <button class="btn-secondary" id="add-set-btn"><i class="fa-solid fa-floppy-disk"></i> Salva e Concludi Sessione Corrente</button>
+        <section id="history-view" class="view-section">
+            <h2>Registro Storico delle Sessioni Archiviate</h2>
+            <div class="history-container" id="history-list-container">
                 </div>
         </section>
-        
+
+        <section id="analytics-view" class="view-section">
+            <h2>Analisi Statistica e Avanzamento Metrico</h2>
+            <div class="dashboard-widgets">
+                <div class="widget-card">
+                    <h3>Volume Totale di Lavoro Complessivo (Tonnellaggio)</h3>
+                    <div class="chart-placeholder">
+                        <p id="analytics-tonnage-text" style="font-size: 2.5rem; font-weight: bold; color: var(--accent); text-shadow: 0 0 10px rgba(0,255,131,0.2);">0 kg</p>
+                        <p style="margin-top: 15px; text-align: center; max-width: 80%;">Questa metrica esprime la massa totale spostata dall'atleta calcolata mediante la formula matematica: Produttoria di Serie per Ripetizioni per Carico.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
+    <script src="script.js"></script>
 </body>
+</html>
