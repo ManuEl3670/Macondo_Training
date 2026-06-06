@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macondo Training LOG PRO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+</head>
+<body> 
+    
+    <nav class="sidebar">
+        <div class="logo">
+            <h2><i class="fa-solid fa-dumbbell"></i> Macondo</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li class="active" data-target="dashboard-view">
+                <a href="#"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></a>
+            </li>
+            <li data-target="workout-view">
+                <a href="#"><i class="fa-solid fa-calendar-plus"></i> <span>Nuovo Allenamento</span></a>
+            </li>
+            <li data-target="history-view">
+                <a href="#"><i class="fa-solid fa-history"></i> <span>Storico</span></a>
+            </li>
+            <li data-target="analytics-view">
+                <a href="#"><i class="fa-solid fa-chart-bar"></i> <span>Statistiche</span></a> 
+            </li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="main-header">
+            <div class="welcome-text">
+                <h1>Macondo Powerlifting</h1>
+                <p id="current-date">Rilevamento del calendario di sistema in corso...</p>
+            </div>
+        </header>
+
+        <section id="dashboard-view" class="view-section active-view">
+            <div class="stats-card squat">
+                <div class="stat-card squat">
+                    <div class="card-icon"><i class="fa-solid fa-weight-hanging"></i></div>
+                    <div class="card-info">
+                        <h3>1RM Squat Massimo</h3>
+                        <p id="dash-squat">0 kg</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-widgets">
+                <div class="widget-card cta-widget">
+                    <h3>Registra una nuova sessione di forza</h3>
+                    <p>Inserisci i carichi sollevati, annota le ripetizioni eseguite e calcola l'indice RPE per stimare l'andamento del tuo picco di forza neurale.</p>
+                    <button class="btn-primary" id="quick-start-btn"><i class="fa-solid fa-play"></i> Inizia Allenamento Ora</button>
+                </div>
+                
+                <div class="dashboard-widget">
+                    <div class="widget-card cta-widget">
+                        <h3>Registra una nuova sessione di forza</h3>
+                        <ul class="recent-list" id="dashboard-recent-list">
+                            </ul>
+                    </div>
+                </div>
+        </section>
+
+        <section id="workout-view" class="view-section">
+            <div class="widget-card">
+
+                <div class="workout-header">
+                    <h2>Sessione di Allenamento in Corso</h2>
+                    <span class="timer-badge"><i class="fa-solid da-clock"></i> <span id="workout-timer">00:00</span></span>
+                </div>
+
+                <div class="exercise-block">
+                    <div class="exercise-selector">
+                        <label for="exercise-select">Seleziona l'Esercizio Target:</label>
+                        <select id="exercise-select">
+                            <option value="squat">Squat</option>
+                            <option value="bench">Panca Piana</option>
+                            <option value="deadlift">Stacco da Terra</option>
+                        </select>
+                    </div>
+                    
+                    <table class="workout-table">
+                        <thead>
+                            <tr>
+                                <th>Set N°</th>
+                                <th>Carico KG</th>
+                                <th>Ripetizioni</th>
+                                <th>RPE</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workout-sets-tbody">
+                            </tbody>
+                    </table>
+
+                    <button class="btn-secondary" id="add-set-btn"><i class="fa-solid fa-floppy-disk"></i> Salva e Concludi Sessione Corrente</button>
+                </div>
+        </section>
+        
+
+    </main>
+
+</body>
