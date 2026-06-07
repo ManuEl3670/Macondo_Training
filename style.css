@@ -84,4 +84,140 @@
     border-radius: 12px;
  }
 
- .nav
+ .nav-links li.active {
+    background-color: rgba(0, 255, 131, 0.1);
+ }
+
+ .nav-links li.active a {
+    color: var(--accent);
+    font-weight: 600;
+ }
+
+ /* CONTENUTO PRINCIPALE */
+ .main-content {
+    margin-left: 260px;
+    flex: 1;
+    padding: 40px;
+    max-width: 1400px;
+    width: calc(100% - 260px);
+ }
+
+.main-header {
+   margin-bottom: 35px;
+   border-bottom: 1px solid var(--border);
+   padding-bottom: 20px;
+}
+
+.welcome-text h1 {
+   font-size: 2rem;
+   font-weight: 700;
+   margin-bottom: 5px;
+}
+
+.welcome-text p {
+   color: var(--text-gray);
+   font-size: 0.95rem;
+}
+
+/* VISITE SCHERMATA */
+.view-section {
+   display: block;
+}
+
+/* CARDS E GRIGLIE */
+.dashboard-widgets {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 20px;
+   margin-top: 20px;
+}
+
+.widget-card {
+   background-color: var(--bg-card);
+   border: 1px solid var(--border);
+   border-radius: 16px;
+   padding: 24px;
+   margin-bottom: 20px;
+}
+
+.stats-card {
+   background-color: var(--bg-card);
+   border: 1px solid var(--border);
+   border-radius: 16px;
+   padding: 24px;
+   margin-bottom: 20px;
+}
+
+.stat-card {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+}
+
+.card-icon {
+   width: 50px;
+   height: 50px;
+   background-color: rgba(255, 255, 255, 0.02);
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   font-size: 1.4rem;
+   color: var(--accent);
+}
+
+.card-info h3 {
+   font-size: 0.9rem;
+   color: var(--text-gray);
+   text-transform: uppercase;
+   margin-bottom: 5px;
+}
+
+.card-info p {
+   font-size: 1.6rem;
+   font-weight: 700;
+}
+
+/* TABELLE E INPUT */
+.workout-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 25px;
+}
+
+.timer-badge {
+   background-color: rgba(0, 255, 131, 0.1);
+   color: var(--accent);
+   padding: 6px 14px;
+   border-radius: 20px;
+   font-weight: 600;
+}
+
+.exercise-selector {
+   margin-bottom: 25px;
+}
+
+.exercise-selector select {
+   background-color: var(--bg-main);
+   border: 1px solid var(--border);
+   color: var(--text-white);
+   padding: 12px 20px;
+   border-radius: 10px;
+   font-size: 1rem;
+   width: 100%;
+   max-width: 300px;
+   outline: none;
+   cursor: pointer;
+   margin-top: 5px;
+}
+
+.workout-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 15px;
+   text-align: left;
+}
+
+.workout-table th {
+   
+}
