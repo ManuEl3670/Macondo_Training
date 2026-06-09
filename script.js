@@ -115,4 +115,5 @@ document.addEventListener('DOMContentLoaded', () => {
         //riporta l'utente automaticamente alla dashboard principale
         document.querySelector('[data-target="dashboard-view"]').click();
     });
+   }
 });
