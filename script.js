@@ -67,9 +67,52 @@ document.addEventListener('DOMContentLoaded', () => {
         <td><button class="btn-danger remove-set-btn"><i class="fa-solid fa-trash"></i></button></td>
         `;
         tbody.appendChild(row);
-        // 
-    })
-    
-    
+     
+        // Sistema di eliminazione della singola riga inserita
+        row.querySelector('.remove-set-btn').addEventListener('click', () => {
+            row.remove();
+            ricalcolaNumeriSet();
+        });
+    });
+
+    function ricalcolaNumeriSet() {
+        const righe = tbody.querySelectorAll('tr');
+        setCount = righe.length;
+        righe.forEach((riga, index) => {
+            riga.querySelector('td:first-child').innerHTML = `<strong>${index + 1}</strong>`;
+        });
     }
+    
+    // --- 5. COMPORTAMENTO TASTO SALVA ---
+    const saveBtn = document.getElementById('save-workout-btn');
+    saveBtn.addEventListener('click', () => {
+        const righe = tbody.querySelectorAll('tr');
+        if (righe.length === 0) {
+            alert("Attenzione: Inserisci almeno una serie prima di chiudere la sessione!");
+            return;
+        }
+
+        // Trova il picco di carico massimo per aggiornare il contatore in dashboard
+        let maxWeight = 0;
+        righe.forEach(riga => {
+            const peso = parseFloat(riga.querySelector('.input-weight').value) || 0;
+            if (peso > maxWeight) maxWeight = peso;
+        });
+
+        const esercizioSelezionato = document.getElementById('exercise-select').value;
+
+        // Se l'esercizio era lo squat, aggiorna il widget delal dashboard
+        if (esercizioSelezionato === 'squat' && maxWeight > 0){
+            document.getElementById('dash-squat').textContent = `${maxWeight} kg`;
+        }
+        
+        //resetta la tabella pulendola per il prossimo allenamento
+        tbody.innerHTML = '';
+        setCount = 0;
+
+        alert("Sessione salvata nel registro locale!");
+
+        //riporta l'utente automaticamente alla dashboard principale
+        document.querySelector('[data-target="dashboard-view"]').click();
+    });
 });
