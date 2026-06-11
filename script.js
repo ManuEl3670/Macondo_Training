@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (liveDisplay) {
             liveDisplay.textContent = `${Math.round(max1RMCorrente)} kg`;
         }
+        return max1RMCorrente
     }
 
     // --- 5. COMPORTAMENTO TASTO SALVA ---
@@ -139,29 +140,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let maxWeight = 0;
-            righe.forEach(riga => {
-                const pesoInput = riga.querySelector('.input-weight');
-                const peso = pesoInput ? (parseFloat(pesoInput.value) || 0) : 0;
-                if (peso > maxWeight) maxWeight = peso;
-            });
+            const miglior1RMSessione=Math.round(calcolaLive1RM());
+            const exerciseSelect=document.getElementById('exercise-select')
+            const esercizioSelezionato=exerciseSelect ? exerciseSelect.value:'';
 
-            const exerciseSelect = document.getElementById('exercise-select');
-            const esercizioSelezionato = exerciseSelect ? exerciseSelect.value : '';
-
-            if (maxWeight > 0) {
+            //aggiorna widget della dashboard
+            if (miglior1RMSessione> 0) {
                 if (esercizioSelezionato === 'squat') {
                     const el = document.getElementById('dash-squat');
-                    if (el) el.textContent = `${maxWeight} kg`;
+                    if (el) el.textContent = `${miglior1RMSessione} kg`;
                 } else if (esercizioSelezionato === 'bench') {
                     const el = document.getElementById('dash-bench');
-                    if (el) el.textContent = `${maxWeight} kg`;
+                    if (el) el.textContent = `${miglior1RMSessione} kg`;
                 } else if (esercizioSelezionato === 'deadlift') {
                     const el = document.getElementById('dash-deadlift');
-                    if (el) el.textContent = `${maxWeight} kg`;
+                    if (el) el.textContent = `${miglior1RMSessione} kg`;
                 }
             }
             
+            // reset tabella
             tbody.innerHTML = '';
             setCount = 0;
 
